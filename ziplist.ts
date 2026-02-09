@@ -11,7 +11,10 @@ function zipList(list1: (string | number)[], list2: (string | number)[]): (strin
 console.log(zipList([1, 2, 3], ['a', 'b', 'c']));
 
 function zipListTheFunctionalWay(list1: (string | number)[], list2: (string | number)[]): (string | number)[] {
-  return list1.flatMap((x: string | number, index: number): (string | number)[] => [x, list2[index]]);
+  return list1.reduce((acc: (string | number)[], item: string | number, index: number) => {
+    acc.push(item, list2[index]);
+    return acc;
+  }, []);
 }
 
 console.log(zipListTheFunctionalWay([1, 2, 3], ['a', 'b', 'c']));
